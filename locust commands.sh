@@ -9,13 +9,11 @@ gcloud run services describe three-tier-app-fe --region us-central1 --project th
 
 gcloud run services update three-tier-app-fe --region us-central1 --project three-tier-web-app-457409 --set-env-vars "ENDPOINT=https://three-tier-app-api-137710723753.us-central1.run.app"   #replace ENDPOINT URL with the cloud run instance of backend URL
 
-gcloud sql instances patch three-tier-app-db-4097 \
-  --assign-ip
+gcloud sql instances patch three-tier-app-db-4097 --assign-ip --project three-tier-web-app-457409
 
 # grab your Cloud Shell external IP
 export MY_IP=$(curl -s https://ifconfig.me)
-gcloud sql instances patch  three-tier-app-db-4097 \
-  --authorized-networks="${MY_IP}/32"
+gcloud sql instances patch three-tier-app-db-4097 --authorized-networks="${MY_IP}/32" --project three-tier-web-app-457409
 
 pkill cloud_sql_proxy 
 
