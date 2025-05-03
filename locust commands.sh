@@ -15,6 +15,10 @@ gcloud sql instances patch three-tier-app-db-4097 --assign-ip --project three-ti
 export MY_IP=$(curl -s https://ifconfig.me)
 gcloud sql instances patch three-tier-app-db-4097 --authorized-networks="${MY_IP}/32" --project three-tier-web-app-457409
 
+wget https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 -O cloud_sql_proxy
+
+chmod +x cloud_sql_proxy
+
 pkill cloud_sql_proxy 
 
 ./cloud_sql_proxy \
