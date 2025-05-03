@@ -8,7 +8,7 @@ DB_CONFIG = {
     "port": 5432,
     "dbname": "todo",
     "user": "postgres",
-    "password": "YY]3mq(m?oLlyMK("
+    "password": "Newpassword"
 }
 
 class FrontendUser(HttpUser):
