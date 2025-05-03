@@ -3,9 +3,9 @@ git clone
 
 cd terraform-google-three-tier-web-app
 
-gcloud run services describe tiered-web-app-api --reigion asia-south1    #replace tiered-web-app-api with the cloud run instance of backend API
+gcloud run services describe tiered-web-app-api --region asia-south1    #replace tiered-web-app-api with the cloud run instance of backend API
 
-gcloud run services describe tiered-web-app-fe --reigion asia-south1     #replace tiered-web-app-fe with the cloud run instance of Frontend
+gcloud run services describe tiered-web-app-fe --region asia-south1     #replace tiered-web-app-fe with the cloud run instance of Frontend
 
 gcloud run services update tiered-web-app-fe --region asia-south1 --set-env-vars "ENDPOINT=https://tiered-web-app-api-880158088034.asia-south1.run.app"   #replace ENDPOINT URL with the cloud run instance of backend URL
 
@@ -20,7 +20,7 @@ gcloud sql instances patch  tiered-web-app-db-044f \
 pkill cloud_sql_proxy 
 
 ./cloud_sql_proxy \
-  -instances="sonorous-saga-458113-n7:asia-south1: tiered-web-app-db-044f=tcp:5432" \
+  -instances="sonorous-saga-458113-n7:asia-south1:tiered-web-app-db-044f=tcp:5432" \
   -ip_address_types=PUBLIC &
 
 gcloud sql users set-password postgres --instance=tiered-web-app-db-044f --password=Newpassword --project=sonorous-saga-458113-n7
@@ -39,4 +39,4 @@ INSERT INTO loadtest_table (stub) VALUES
 GRANT USAGE   ON SCHEMA public TO postgres;
 GRANT SELECT  ON TABLE  loadtest_table TO postgres;
 
-locust   --headless   --users  200   --spawn-rate 5   --run-time 3m   -f locustfile.py   --only-summary
+locust --headless --users 200 --spawn-rate 5 --run-time 3m -f locustfile.py --only-summary
