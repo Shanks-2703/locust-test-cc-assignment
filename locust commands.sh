@@ -3,11 +3,11 @@ git clone
 
 cd terraform-google-three-tier-web-app
 
-gcloud run services describe three-tier-app-api --region us-central1    #replace tiered-web-app-api with the cloud run instance of backend API
+gcloud run services describe three-tier-app-api --region us-central1 --project three-tier-web-app-457409   #replace tiered-web-app-api with the cloud run instance of backend API
 
-gcloud run services describe three-tier-app-fe --region us-central1     #replace tiered-web-app-fe with the cloud run instance of Frontend
+gcloud run services describe three-tier-app-fe --region us-central1 --project three-tier-web-app-457409    #replace tiered-web-app-fe with the cloud run instance of Frontend
 
-gcloud run services update three-tier-app-fe --region us-central1 --set-env-vars "ENDPOINT=https://three-tier-app-api-137710723753.us-central1.run.app"   #replace ENDPOINT URL with the cloud run instance of backend URL
+gcloud run services update three-tier-app-fe --region us-central1 --project three-tier-web-app-457409 --set-env-vars "ENDPOINT=https://three-tier-app-api-137710723753.us-central1.run.app"   #replace ENDPOINT URL with the cloud run instance of backend URL
 
 gcloud sql instances patch three-tier-app-db-4097 \
   --assign-ip
